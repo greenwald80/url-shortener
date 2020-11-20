@@ -2,5 +2,7 @@
 heroku login
 heroku create
 https://lit-refuge-58533.herokuapp.com/ | https://git.heroku.com/lit-refuge-58533.git
-heroku push 
+git add .
+git commit -m "init"
+git push heroku master 
 
