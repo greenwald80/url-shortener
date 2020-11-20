@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const app = express();
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const indexRoutes = require("./routes/index");
 const linkRoutes = require("./routes/links");
 const connectDb = require("./config/db");
@@ -24,7 +24,7 @@ app.use(indexRoutes);
 app.use("/links", linkRoutes);
 
 //because mongoose return promise
-connectDb(()=>console.log("Connected to DB succesfully"))
+connectDb(() => console.log("Connected to DB succesfully"))
   .then(() => {
     app.listen(PORT, () => {
       console.log(`http://localhost:${PORT}`);
