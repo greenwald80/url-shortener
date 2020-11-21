@@ -7,8 +7,9 @@
   </head>
   <body>
     <div class="center">
+      <h1>URL shortener using NodeJS and EJS</h1>
       <form action="links/short" method="POST" id="shortForm">
-      <input type="text" name="link" id="link" placeholder="Paste url link here"/>
+      <input type="text" name="link" id="link" placeholder="Paste url link here" required="true"/>
       <button type="submit">Get short link</button>
     </form>
     <ul id="links"></ul>
