@@ -24,7 +24,7 @@ app.use(indexRoutes);
 app.use("/links", linkRoutes);
 
 //because mongoose return promise
-connectDb(() => console.log("Connected to DB succesfully"))
+connectDb()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`http://localhost:${PORT}`);

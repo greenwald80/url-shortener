@@ -37,8 +37,7 @@ router.post("/short", async (req, res) => {
 router.get("/:code", async (req, res) => {
   const { code } = req.params
   let link = await Link.findOne({ code});
-  console.log("Link: ", link);
-  debugger;
+  //console.log("Link: ", link);
   if (link) {
     return res.redirect(link.source);
   }
