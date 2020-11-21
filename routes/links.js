@@ -3,6 +3,11 @@ const router = express.Router();
 const Link = require("../models/link");
 const shortid = require("shortid");
 
+let APP_LINK = "localhost:3000";
+if (process.env.NODE_ENV === "production") {
+  APP_LINK = process.env.APP_LINK;
+}
+
 //POSTMAN => localhost:3000/links/short => POST + RAW + Body: {
 //    "link": "https://www.citrus.ua/ekshn-kamery/ekshn-kamera-xiaomi-yi-4kplus-action-camera-black-638385.html"
 //} => Result: {
@@ -20,7 +25,7 @@ router.post("/short", async (req, res) => {
       return res.json(url);
     }
     const code = shortid.generate();
-    const shortUrl = `localhost:3000/links/${code}`;
+    const shortUrl = `${APP_LINK}/links/${code}`;
     url = new Link({
       code: code,
       source: link,
@@ -35,8 +40,8 @@ router.post("/short", async (req, res) => {
 
 //localhost:3000/links/XV55S4H8X
 router.get("/:code", async (req, res) => {
-  const { code } = req.params
-  let link = await Link.findOne({ code});
+  const { code } = req.params;
+  let link = await Link.findOne({ code });
   //console.log("Link: ", link);
   if (link) {
     return res.redirect(link.source);
